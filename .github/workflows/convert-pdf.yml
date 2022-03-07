@@ -1,0 +1,20 @@
+name: Pandotfile output
+
+on: 
+  push:
+    paths:
+      - './Dockerfile'
+
+jobs:
+  convert_via_pandotfile:
+    runs-on: ubuntu-latest
+    container:
+      image: guillaumeallain/pandotfiles
+    steps:
+      - uses: actions/checkout@v2
+      - name: make pdf
+        run: make pdf
+      - uses: actions/upload-artifact@master
+        with:
+          name: Documents
+          path: build/pdf/*.pdf

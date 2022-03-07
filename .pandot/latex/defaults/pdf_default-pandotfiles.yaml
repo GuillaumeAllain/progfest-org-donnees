@@ -1,0 +1,23 @@
+from: markdown
+
+to: latex
+
+standalone: true
+
+data-dir: ../.pandot/pandoc
+
+metadata:
+  crossrefYaml: ../.pandot/latex/defaults/pandoc-crossref-pandotfiles.yaml
+
+metadata-file: ../.pandot/latex/defaults/latex_default-pandotfiles.yaml
+
+filters:
+  - include-files.lua
+  - pandoc-gls.lua
+  - ulresume-to-meta.lua
+  - ulabstract-to-meta.lua
+  - abstract-to-meta.lua
+  - siunitx.lua
+  - pandoc-crossref
+
+cite-method: natbib

@@ -1,0 +1,10 @@
+---
+remote_directory: C:\Users\codev\projets\codev_remote_default
+
+sync_project_list: [./run_sequence.seq, ./len/, ./seq/]
+
+sync_local_download_directory: output
+
+sync_remote_download_list: [fig, data]
+
+codev_command: in run_sequence

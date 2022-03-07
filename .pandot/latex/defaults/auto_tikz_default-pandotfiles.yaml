@@ -1,0 +1,6 @@
+---
+font: "DejaVu Sans"
+font_size: "10 pt"
+src_folder: "."
+log_folder: "log"
+output: "auto_tikz_backup.tex"

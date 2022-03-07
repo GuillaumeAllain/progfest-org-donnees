@@ -1,0 +1,20 @@
+---
+natbiboptions: numbers
+biblio-style: unsrtnat
+float_placement: t
+fontsize: 12pt
+papersize: letterpaper
+numbersections: true
+figPrefix:
+        - "figure"
+        - "figures"
+tblPrefix:
+        - "tableau"
+        - "tableaux"
+lstPrefix:
+        - "liste"
+        - "listes"
+secPrefix:
+        - "section"
+        - "sections"
+---

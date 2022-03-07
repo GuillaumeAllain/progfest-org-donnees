@@ -1,0 +1,12 @@
+figPrefix:
+        - "figure"
+        - "figures"
+tblPrefix:
+        - "tableau"
+        - "tableaux"
+lstPrefix:
+        - "liste"
+        - "listes"
+secPrefix:
+        - "section"
+        - "sections"

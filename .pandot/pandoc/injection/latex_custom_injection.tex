@@ -1,0 +1,72 @@
+% CUSTOM TEMPLATE
+\usepackage{siunitx}
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\makeglossaries
+
+\ExplSyntaxOn
+  \NewDocumentCommand{\getenv}{om}
+   {
+    \sys_get_shell:nnN { kpsewhich ~ --var-value ~ #2 } { } \l_tmpa_tl
+    \tl_trim_spaces:N \l_tmpa_tl
+    \IfNoValueTF { #1 }
+     {
+      \tl_use:N \l_tmpa_tl
+     }
+     {
+      \tl_set_eq:NN #1 \l_tmpa_tl
+     }
+   }
+  \ExplSyntaxOff
+
+  \newcommand{\titleprint}{$title$}
+  
+  \newcommand{\authoremail}{$authoremail$}
+  \newcommand{\osajournal}{$osajournal$}
+  \newcommand{\osalineno}{$osalineno$}
+  \newcommand{\osaaddress}{$osaaddress$}
+  \newcommand{\subtitleprint}{$subtitle$}
+  \newcommand{\authorprint}{$for(author)$$author$$sep$, $endfor$}
+  \newcommand{\acronyms}{$acronyms$}
+  \newcommand{\dateprint}{$if(date)$ $date$ $else$ ~ $endif$}
+  \newcommand{\yearprint}{$if(year)$ $year$ $else$ \the\year{} $endif$}
+  \newcommand{\uldirector}{$uldirector$}
+  \newcommand{\uldepot}{$uldepot$}
+  \newcommand{\ulprogram}{$ulprogram$}
+  \newcommand{\ulabstract}{$ulabstract$}
+  \newcommand{\ulresume}{$ulresume$}
+  \newcommand{\ulepigraphe}{$ulepigraphe$}
+  \newcommand{\uldedicace}{$uldedicace$}
+  \newcommand{\ulremerciements}{$ulremerciements$}
+  \newcommand{\docstyleprint}{$docstyle$}
+  \newcommand{\idonly}{$if(id)$ $id$ $endif$}
+  \newcommand{\idprint}{$if(id)$ id: \idonly $else$ ~ $endif$}
+  \newcommand{\tagsprint}{$tagsh$}
+  \newcommand{\bibliographyinternefile}{$bibliography-internal$}
+  \makeatletter
+    \def\fps@figure{$if(float_placement)$ $float_placement$ $else$ htbp $endif$}
+    \def\fps@table{$if(float_placement)$ $float_placement$ $else$ htbp $endif$}
+  \makeatother
+
+% Docstyle injection
+$if(docstyle)$
+  \usepackage{graphicx}
+  \usepackage{ifthen}
+  \usepackage{shellesc}
+  \immediate\write18{cp ../.pandot/latex/docstyle_latex/docstyle-$docstyle$.tex \OUTPUTDIRECTORY/template.tex}
+  \input{\OUTPUTDIRECTORY/template.tex}
+
+    $if(acronyms)$
+    $for(acronyms)$
+    \newacronym{$acronyms.cmd$}{$acronyms.short$}{$acronyms.long$}
+    $endfor$
+    $endif$
+$endif$
+
+$if(nordstyle)$
+  % Nord color scheme
+  
+  \definecolor{background}{rgb}{0.179865, 0.203125, 0.24609375}
+  \definecolor{foreground}{rgb}{0.92549,0.93725490, 0.9568627450}
+  \pagecolor{background}
+  \color{foreground}
+$endif$

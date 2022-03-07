@@ -1,0 +1,82 @@
+\pagestyle{empty}
+
+\usepackage{fancyhdr}
+\usepackage[top=2.5cm, bottom=4cm, left=2.5cm, right=2.5cm,marginparwidth=3.6cm, marginparsep=3mm, headsep=1cm, footskip=40pt]{geometry}
+
+% Nombres et bibliographie
+\ifxetex
+  \setmainfont{Palatino}
+\fi
+\pagenumbering{arabic}
+
+% Titrage
+\usepackage{blindtext}
+\usepackage{sectsty}
+\usepackage{xparse}
+\usepackage{lastpage}
+
+% Bibliographie et acronymes
+\usepackage{multibib}
+\newcites{internal}{Documents internes}
+% \bibliographystyle{unsrtnat}
+\bibliographystyleinternal{unsrtnat}
+
+%%%%%%%%%%%%%%%%% STYLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%lengtes voor titelpagina
+\newlength{\logowidth}
+\setlength{\logowidth}{5cm}
+\setlength\parindent{0pt}
+\setlength{\parskip}{0.5\baselineskip}
+% \usepackage{tocloft}
+% \renewcommand\cftsecafterpnum{\vskip15pt}
+
+\pagestyle{fancy}
+
+\addtolength{\headheight}{30pt}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\fancyhead{}
+\fancyhead[L]{\footnotesize\includegraphics[height=1cm]{../.pandot/latex/docstyle_latex/img/logo_LRIO.pdf}}
+\fancyhead[R]{\rule[-2.5ex]{0pt}{2.5ex}\footnotesize \titleprint}
+\fancyfoot{}
+\fancyfoot[L]{\rule[1.5ex]{0pt}{1.5ex}\footnotesize \authorprint}
+\fancyfoot[R]{\rule[1.5ex]{0pt}{1.5ex}\footnotesize \thepage/\pageref*{LastPage}}
+
+
+%commando om titelpagina te maken
+\renewcommand{\maketitle}{
+  \thispagestyle{fancy}
+  \begin{center}
+    \ifthenelse{\equal{\titleprint}{}}{
+      }{
+      \huge\textbf{\titleprint}\\\vspace{0.5cm}
+    }
+    \ifthenelse{\equal{\subtitleprint}{}}{
+      }{
+      \large{\subtitleprint}\\\vspace{0.5cm}
+    }
+    \ifthenelse{\equal{\authorprint}{}}{
+      }{
+      \Large{\authorprint}\\\vspace{0.5cm}
+    }
+    \ifthenelse{\equal{\dateprint}{}}{
+      }{
+      \normalsize{\dateprint}
+    }
+  \end{center}
+  % \printglossary[type=\acronymtype,title=Acronymes]
+  \ifthenelse{\equal{\acronyms}{}}{}{
+  \printglossary[type=\acronymtype,title=Acronymes]
+  }
+  \ifthenelse{\equal{\bibliographyinternefile}{}}{}{
+    % \newcites{interne}{Documents internes}
+    % \bibliographystyleinterne{unsrtnat}
+    \bibliographyinternal{\bibliographyinternefile}
+  % \printbibliography[title=interne, keyword=secondary]
+  }
+}
+
+
+\usepackage{hyperref}
+\hypersetup{colorlinks, allcolors=[rgb]{0, 0, 0.3}}

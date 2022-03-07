@@ -1,0 +1,47 @@
+\pagestyle{empty}
+\usepackage{fancyhdr}
+\usepackage[top=2.5cm, bottom=4cm, left=2.5cm, right=2.5cm,marginparwidth=3.6cm, marginparsep=3mm, headsep=1cm, footskip=40pt]{geometry}
+
+% Nombres et bibliographie
+\ifxetex
+  \setmainfont{Avenir}
+\fi
+\pagenumbering{arabic}
+
+% Titrage
+\usepackage{blindtext}
+\usepackage{sectsty}
+\usepackage{xparse}
+\usepackage{lastpage}
+
+\newlength{\logowidth}
+\setlength{\logowidth}{5cm}
+\setlength\parindent{0pt}
+\setlength{\parskip}{0.5\baselineskip}
+
+\pagestyle{fancy}
+
+\addtolength{\headheight}{30pt}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\fancyhead{}
+% \fancyhead[L]{\footnotesize\includegraphics[height=1cm]{\XDGDATAHOME/visual-id/monogramme/build/tikzfigures/monogramme_mono.pdf}}
+\fancyhead[L]{}
+\fancyhead[R]{\rule[-2.5ex]{0pt}{2.5ex}\footnotesize
+\begin{minipage}{\logowidth}
+  \centering
+  \dateprint\\\idprint \\
+  \tagsprint
+\end{minipage}
+}
+\fancyfoot{}
+\fancyfoot[L]{\rule[1.5ex]{0pt}{1.5ex}\footnotesize \authorprint}
+\fancyfoot[R]{\rule[1.5ex]{0pt}{1.5ex}\footnotesize \thepage/\pageref*{LastPage}}
+
+\renewcommand{\maketitle}{
+    \thispagestyle{fancy}
+    {\huge\textbf{\titleprint}\\\vspace{0.5cm}\large\subtitleprint\par}%
+}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks, allcolors=[rgb]{0, 0, 0.3}}

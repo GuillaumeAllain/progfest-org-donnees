@@ -1,0 +1,79 @@
+\titre{\titleprint}
+\soustitre{\subtitleprint}
+\auteur{\authorprint}
+\annee{\yearprint}
+\programme{\ulprogram}
+\direction{\uldirector}
+
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setotherlanguages{english}
+
+% \bibliographystyle{\XDGDATAHOME/pandot/templates/docstyle_latex/bst/frplain}
+
+\renewcommand{\maketitle}{
+
+  \frontmatter                    % pages liminaires
+
+  \ifthenelse{\equal{\uldepot}{}}{
+    \pagetitre                     % production des pages de titre
+    \frontispice
+  }{
+    \frontispice
+  }
+  
+  \ifthenelse{\equal{\ulresume}{}}{}{
+    \chapter*{Résumé}                      % ne pas numéroter
+    \phantomsection\addcontentsline{toc}{chapter}{Résumé} % inclure dans TdM
+
+    \begin{french}
+      \ulresume                % résumé français
+    \end{french}
+  }
+
+  \ifthenelse{\equal{\ulabstract}{}}{}{
+    \chapter*{Abstract}                      % ne pas numéroter
+    \phantomsection\addcontentsline{toc}{chapter}{Abstract} % inclure dans TdM
+
+    \begin{english}
+      \ulabstract              % résumé anglais
+    \end{english}
+  }
+
+  \ifthenelse{\equal{\ulresume\ulabstract}{}}{}{
+    \cleardoublepage
+  }
+
+  \setcounter{tocdepth}{2}
+  \tableofcontents                % production de la TdM
+  \cleardoublepage
+
+  \listoftables                   % production de la liste des tableaux
+  \cleardoublepage
+
+  \listoffigures                  % production de la liste des figures
+  \cleardoublepage
+
+
+  \ifthenelse{\equal{\acronyms}{}}{}{
+  \printglossary[type=\acronymtype,title=Acronymes]
+    \cleardoublepage
+  }
+
+  \ifthenelse{\equal{\uldedicace}{}}{}{
+    \dedicace{\uldedicace}
+    \cleardoublepage
+  }
+
+  \ifthenelse{\equal{\ulepigraphe}{}}{}{
+    \epigraphe{\ulepigraphe}
+    \cleardoublepage
+  }
+
+  \ifthenelse{\equal{\ulremerciements}{}}{}{
+    \chapter*{Remerciements}         % ne pas numéroter
+    \phantomsection\addcontentsline{toc}{chapter}{Remerciements} % inclure dans TdM
+    \ulremerciements         % remerciements
+  }
+
+}

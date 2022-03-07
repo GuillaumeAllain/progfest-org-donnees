@@ -1,0 +1,11 @@
+---
+dependencies:
+    - ipython
+    - pip
+    - pandas
+    - numpy
+    - hdf5
+    - scipy
+    - matplotlib
+    - pip:
+      - tables

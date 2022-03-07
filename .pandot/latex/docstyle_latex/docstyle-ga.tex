@@ -1,0 +1,141 @@
+\pagestyle{empty}
+
+\usepackage{fancyhdr}
+\usepackage[top=2.5cm, bottom=4cm, left=2.5cm, right=2.5cm,marginparwidth=3.6cm, marginparsep=3mm, headsep=1cm, footskip=40pt]{geometry}
+
+% Nombres et bibliographie
+\ifxetex
+  \setmainfont{Palatino}
+\fi
+\pagenumbering{arabic}
+
+% Titrage
+\usepackage{blindtext}
+\usepackage{sectsty}
+\usepackage{xparse}
+\usepackage{lastpage}
+
+% Bibliographie et acronymes
+\usepackage{multibib}
+\newcites{internal}{Documents internes}
+% \bibliographystyle{unsrtnat}
+\bibliographystyleinternal{unsrtnat}
+
+%%%%%%%%%%%%%%%%% STYLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%commando om klas in te voeren
+% \newcommand{\klas}[1]{\def\@klas{#1}}
+
+%commando om
+% \newcommand{\filetitle}[1]{\def\@extratitlestuff{#1}}
+
+%lengtes voor titelpagina
+\newlength{\logowidth}
+\setlength{\logowidth}{5cm}
+\setlength\parindent{0pt}
+\setlength{\parskip}{0.5\baselineskip}
+% \usepackage{tocloft}
+% \renewcommand\cftsecafterpnum{\vskip15pt}
+
+\pagestyle{fancy}
+
+\addtolength{\headheight}{30pt}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\fancyhead{}
+\fancyhead[L]{\footnotesize\raisebox{-.4\height}{\includegraphics[height=1cm]{../.pandot/latex/docstyle_latex/img/logo_ga.png}}}
+\fancyhead[R]{\rule[-2.5ex]{0pt}{2.5ex}\footnotesize \titleprint}
+\fancyfoot{}
+\fancyfoot[L]{\rule[1.5ex]{0pt}{1.5ex}\footnotesize \authorprint}
+\fancyfoot[R]{\rule[1.5ex]{0pt}{1.5ex}\footnotesize \thepage/\pageref*{LastPage}}
+
+
+%commando om titelpagina te maken
+\renewcommand{\maketitle}{
+  \thispagestyle{empty}
+  \leavevmode%
+  \vskip -2cm
+  \begin{tabular}{cc}
+    \begin{minipage}{\logowidth}
+        \includegraphics[width = \logowidth]{../.pandot/latex/docstyle_latex/img/logo_ga.png}
+      \end{minipage} &
+  \end{tabular}
+  \vskip \stretch{3}%
+  \noindent
+  \rule{\textwidth}{2pt}
+  \vskip 0.75em%
+  \begin{center}
+    \ifthenelse{\equal{\titleprint}{}}{
+      }{
+      \Huge\textbf{\titleprint}\\\vspace{0.5cm}
+    }
+    \ifthenelse{\equal{\subtitleprint}{}}{
+      }{
+      \LARGE{\subtitleprint}
+    }
+    \par
+  \end{center}
+  \vskip 0.75em%
+  \noindent%
+  \rule{\textwidth}{2pt}%
+  % % \ifdefined\@extratitlestuff
+  % %   \vskip 0.75em%
+  % %   \begin{center}
+  % %   \@extratitlestuff
+  % % \end{center}
+  % \fi
+  \vskip \stretch{3}%
+  \hfill  \authorprint\par%
+  \vskip 0.5em%
+  \hfill  \dateprint%
+  \vskip \stretch{1}%
+  \setcounter{page}{1}%
+  \normalfont
+  \cleardoublepage
+  \pagenumbering{roman}
+  \setcounter{tocdepth}{3}
+  %Tables et acronymes
+  % \section*{Version du document}
+  % \newdate{ver1}{13}{02}{2019}
+  % \begin{center}
+  %   \begin{tabular}{|c|c|c|}
+  %   \hline
+  %   Auteur & Date & Commentaire\\
+  %   \hhline{|=|=|=|}
+  %   Guillaume Allain & \displaydate{ver1} & Première version du document\\
+  %   \hline
+  %   \end{tabular}
+  % \end{center}
+  \tableofcontents                % production de la TdM
+  \listoffigures                  % production de la liste des figures
+  \listoftables                   % production de la liste des tableaux
+  % \printglossary[type=\acronymtype,title=Acronymes]
+  \ifthenelse{\equal{\acronyms}{}}{}{
+  \printglossary[type=\acronymtype,title=Acronymes]
+  }
+
+  \ifthenelse{\equal{\bibliographyinternefile}{}}{}{
+    % \newcites{interne}{Documents internes}
+    % \bibliographystyleinterne{unsrtnat}
+    \bibliographyinternal{\bibliographyinternefile}
+  % \printbibliography[title=interne, keyword=secondary]
+  }
+  
+
+  \fancyfoot{}
+  \fancyfoot[L]{\rule[1.5ex]{0pt}{1.5ex}\footnotesize \authorprint}
+  \fancyfoot[R]{\rule[1.5ex]{0pt}{1.5ex}\footnotesize \thepage}
+
+  \cleardoublepage
+  \fancyfoot{}
+  \fancyfoot[L]{\rule[1.5ex]{0pt}{1.5ex}\footnotesize \authorprint}
+  \fancyfoot[R]{\rule[1.5ex]{0pt}{1.5ex}\footnotesize \thepage/\pageref*{LastPage}}
+  \pagenumbering{arabic}
+}
+
+% \makeglossaries
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\usepackage{hyperref}
+\hypersetup{colorlinks, allcolors=[rgb]{0, 0, 0.3}}

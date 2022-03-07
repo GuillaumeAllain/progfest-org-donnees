@@ -1,0 +1,12 @@
+---
+documentclass: ulthese
+classoption:
+        - ULDIPLOMA
+        - round
+        - semicolon
+        - authoryear
+        - numbers
+        - nobabel
+natbiboptions:
+has-frontmatter: ~
+---

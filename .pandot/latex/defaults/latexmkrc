@@ -1,0 +1,22 @@
+ensure_path('TEXINPUTS', '../.pandot/latex/cls_sty//' );
+ensure_path('BSTINPUTS', '../../.pandot/latex/cls_sty//' );
+
+add_cus_dep('glo' => 'gls', 0, 'makeglo2gls');
+
+sub makeglo2gls {
+        my ($base_name, $path) = fileparse( $_[0] );
+        pushd $path;
+        my $return =  system("makeindex -s '$base_name'.ist -t '$base_name'.glg -o '$base_name'.gls '$base_name'.glo");
+        popd;
+        return $return;
+}
+
+# This dependency assumes the glossaries package.
+add_cus_dep('acn' => 'acr', 0, 'makeacn2acr');
+sub makeacn2acr {
+        my ($base_name, $path) = fileparse( $_[0] );
+        pushd $path;
+        my $return =system("makeindex -s '$base_name'.ist -t '$base_name'.alg -o '$base_name'.acr '$base_name'.acn");
+        popd;
+        return $return;
+}

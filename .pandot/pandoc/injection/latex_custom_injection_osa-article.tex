@@ -1,0 +1,72 @@
+%% Select the journal you're submitting to
+%% oe, boe, ome, osac, osajournal
+\journal{$osajournal$}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% Key:
+% Express journals must have the correct journal selected:
+% {oe} Optics Express
+% {boe} Biomedical Optics Express
+% {ome} Optical Material Express
+% {osac} OSAC Continuum
+% Other OSA journals may use:
+% {osajournal} Applied Optics, Advances in Optics and Photonics, Journal of the Optical Society of America A/B, Optics Letters, Optica, Photonics Research
+
+% Uncomment if submitting to Photonics Research.
+% ONLY APPLICABLE FOR \journal{osajournal}
+% \setprjcopyright
+
+\usepackage{siunitx}
+\usepackage{float}
+\floatplacement{figure}{t}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\usepackage{ifthen}
+% Set the article type
+\ifthenelse{\equal{$osajournal$}{oe}}{
+  \articletype{Research Article}
+  }{
+}
+\ifthenelse{\equal{$osajournal$}{boe}}{
+  \articletype{Research Article}
+  }{
+}
+\ifthenelse{\equal{$osajournal$}{ome}}{
+  \articletype{Research Article}
+  }{
+}
+\ifthenelse{\equal{$osajournal$}{osac}}{
+  \articletype{Research Article}
+  }{
+}
+% Note that article type is not required for Express journals (OE, BOE, OME and OSAC)
+
+
+\ifthenelse{\equal{$osalineno$}{}}{}{
+  \usepackage{lineno}
+  \linenumbers
+}
+
+
+  \renewcommand{\maketitle}{
+
+
+  \title{$title$}
+
+  \author{$for(author)$$author$$sep$, $endfor$}
+
+
+  \ifthenelse{\equal{$osaaddress$}{}}{
+    \email{address is needed} %% email address is required
+    }{
+    \email{$osaaddress$} %% email address is required
+  }
+
+  \ifthenelse{\equal{$authoremail$}{}}{
+    \email{email is needed} %% email address is required
+    }{
+    \email{$authoremail$} %% email address is required
+  }
+
+}
+
+% Docstyle injection
